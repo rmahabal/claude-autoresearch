@@ -10,6 +10,27 @@ Inspired by [Karpathy's autoresearch](https://github.com/karpathy/autoresearch).
 
 **Core idea:** You are an autonomous agent. Modify → Verify → Keep/Discard → Repeat.
 
+## MANDATORY: Interactive Setup Gate
+
+**CRITICAL — READ THIS FIRST BEFORE ANY ACTION:**
+
+For ALL commands (`/autoresearch`, `/autoresearch:plan`, `/autoresearch:debug`, `/autoresearch:fix`, `/autoresearch:security`, `/autoresearch:ship`):
+
+1. **Check if the user provided ALL required context inline** (Goal, Scope, Metric, flags, etc.)
+2. **If ANY required context is missing → you MUST use `AskUserQuestion` to collect it BEFORE proceeding to any execution phase.** DO NOT skip this step. DO NOT proceed without user input.
+3. Each subcommand's reference file has an "Interactive Setup" section — follow it exactly when context is missing.
+
+| Command | Required Context | If Missing → Ask |
+|---------|-----------------|-----------------|
+| `/autoresearch` | Goal, Scope, Metric, Direction, Verify | Batch 1 (4 questions) + Batch 2 (3 questions) from Setup Phase below |
+| `/autoresearch:plan` | Goal | Ask via `AskUserQuestion` per `references/plan-workflow.md` |
+| `/autoresearch:debug` | Issue/Symptom, Scope | 4 batched questions per `references/debug-workflow.md` |
+| `/autoresearch:fix` | Target, Scope | 4 batched questions per `references/fix-workflow.md` |
+| `/autoresearch:security` | Scope, Depth | 3 batched questions per `references/security-workflow.md` |
+| `/autoresearch:ship` | What/Type, Mode | 3 batched questions per `references/ship-workflow.md` |
+
+**YOU MUST NOT start any loop, phase, or execution without completing interactive setup when context is missing. This is a BLOCKING prerequisite.**
+
 ## Subcommands
 
 | Subcommand | Purpose |
@@ -258,7 +279,7 @@ After N iterations Claude stops and prints a final summary with baseline → cur
 
 **If the user provides Goal, Scope, Metric, and Verify inline** → extract them and proceed to step 5.
 
-**If any critical field is missing** → use `AskUserQuestion` to collect them interactively:
+**CRITICAL: If ANY critical field is missing (Goal, Scope, Metric, Direction, or Verify), you MUST use `AskUserQuestion` to collect them interactively. DO NOT proceed to The Loop or any execution phase without completing this setup. This is a BLOCKING prerequisite.**
 
 ### Interactive Setup (when invoked without full config)
 
@@ -285,7 +306,7 @@ Use a SINGLE `AskUserQuestion` call with these 4 questions:
 
 **After Batch 2:** Dry-run the verify command. If it fails, ask user to fix or choose a different command. If it passes, proceed with launch choice.
 
-**IMPORTANT:** Always batch questions — never ask one at a time. Users should see all config choices together for full context.
+**IMPORTANT:** You MUST call `AskUserQuestion` with batched questions — never ask one at a time, and never skip this step. Users should see all config choices together for full context. DO NOT proceed to Setup Steps or The Loop without completing interactive setup.
 
 ### Setup Steps (after config is complete)
 

@@ -28,13 +28,13 @@ Scope: src/api/**/*.ts, src/middleware/**/*.ts
 Focus: authentication and authorization flows
 ```
 
-## Interactive Setup (when invoked without flags)
+## PREREQUISITE: Interactive Setup (when invoked without flags)
 
-If `/autoresearch:security` is invoked without `--diff`, scope, or focus, scan the codebase first (detect tech stack, API routes, auth patterns), then use `AskUserQuestion` with ALL questions batched.
+**CRITICAL — BLOCKING PREREQUISITE:** If `/autoresearch:security` is invoked without `--diff`, scope, or focus, you MUST scan the codebase first, then use `AskUserQuestion` to gather user input BEFORE proceeding to ANY phase. DO NOT skip this step.
 
 **Single batched call — all 3 questions at once:**
 
-Use ONE `AskUserQuestion` call with all 3 questions:
+You MUST call `AskUserQuestion` with all 3 questions in ONE call:
 
 | # | Header | Question | Options (from codebase scan) |
 |---|--------|----------|------------------------------|
