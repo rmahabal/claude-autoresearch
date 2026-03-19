@@ -46,8 +46,9 @@ Then run `/reload-plugins` or restart Claude Code. All 7 commands are immediatel
 git clone https://github.com/uditgoenka/autoresearch.git
 
 # Copy to your project
-cp -r autoresearch/skills/autoresearch .claude/skills/autoresearch
-cp -r autoresearch/commands/autoresearch .claude/commands/autoresearch
+cp -r autoresearch/claude-plugin/skills/autoresearch .claude/skills/autoresearch
+cp -r autoresearch/claude-plugin/commands/autoresearch .claude/commands/autoresearch
+cp autoresearch/claude-plugin/commands/autoresearch.md .claude/commands/autoresearch.md
 ```
 
 ### Option C — Manual Install (Global)
@@ -56,8 +57,9 @@ cp -r autoresearch/commands/autoresearch .claude/commands/autoresearch
 git clone https://github.com/uditgoenka/autoresearch.git
 
 # Copy globally (available in all projects)
-cp -r autoresearch/skills/autoresearch ~/.claude/skills/autoresearch
-cp -r autoresearch/commands/autoresearch ~/.claude/commands/autoresearch
+cp -r autoresearch/claude-plugin/skills/autoresearch ~/.claude/skills/autoresearch
+cp -r autoresearch/claude-plugin/commands/autoresearch ~/.claude/commands/autoresearch
+cp autoresearch/claude-plugin/commands/autoresearch.md ~/.claude/commands/autoresearch.md
 ```
 
 > **Important:** The `commands/` directory is required for subcommands (`/autoresearch:plan`, `/autoresearch:ship`, etc.) to work.

@@ -38,7 +38,7 @@ fi
 VERSION="${VERSION#v}"
 TAG="v${VERSION}"
 BRANCH="release/${VERSION}"
-PLUGIN_JSON=".claude-plugin/plugin.json"
+PLUGIN_JSON="claude-plugin/.claude-plugin/plugin.json"
 MARKETPLACE_JSON=".claude-plugin/marketplace.json"
 
 # --- Preflight checks ---
@@ -99,6 +99,17 @@ for JSON_FILE in "$PLUGIN_JSON" "$MARKETPLACE_JSON"; do
   fi
 done
 
+# --- Bump version in distribution SKILL.md ---
+DIST_SKILL="claude-plugin/skills/autoresearch/SKILL.md"
+if [[ -f "$DIST_SKILL" ]] && grep -q "^version:" "$DIST_SKILL"; then
+  echo "    Updating $DIST_SKILL"
+  if [[ "$(uname)" == "Darwin" ]]; then
+    sed -i '' "s/^version: .*/version: $VERSION/" "$DIST_SKILL"
+  else
+    sed -i "s/^version: .*/version: $VERSION/" "$DIST_SKILL"
+  fi
+fi
+
 # --- Bump version in SKILL.md frontmatter ---
 SKILL_FILE=".claude/skills/autoresearch/SKILL.md"
 if [[ -f "$SKILL_FILE" ]] && grep -q "^version:" "$SKILL_FILE"; then
@@ -122,18 +133,18 @@ for DOC_FILE in README.md guide/README.md; do
   fi
 done
 
-# --- Sync distribution files from .claude/ ---
+# --- Sync distribution files from .claude/ to claude-plugin/ ---
 echo ""
-echo "[3/7] Syncing distribution files from .claude/"
+echo "[3/7] Syncing distribution files to claude-plugin/"
 if [[ -d ".claude/commands/autoresearch" ]]; then
-  cp .claude/commands/autoresearch.md commands/autoresearch.md 2>/dev/null || true
-  cp .claude/commands/autoresearch/*.md commands/autoresearch/
-  echo "    Synced commands/autoresearch/"
+  cp .claude/commands/autoresearch.md claude-plugin/commands/autoresearch.md
+  cp .claude/commands/autoresearch/*.md claude-plugin/commands/autoresearch/
+  echo "    Synced claude-plugin/commands/autoresearch/"
 fi
 if [[ -d ".claude/skills/autoresearch" ]]; then
-  cp .claude/skills/autoresearch/SKILL.md skills/autoresearch/SKILL.md
-  cp .claude/skills/autoresearch/references/*.md skills/autoresearch/references/
-  echo "    Synced skills/autoresearch/"
+  cp .claude/skills/autoresearch/SKILL.md claude-plugin/skills/autoresearch/SKILL.md
+  cp .claude/skills/autoresearch/references/*.md claude-plugin/skills/autoresearch/references/
+  echo "    Synced claude-plugin/skills/autoresearch/"
 fi
 
 # --- Doc review prompt ---

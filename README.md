@@ -7,7 +7,7 @@
 Based on [Karpathy's autoresearch](https://github.com/karpathy/autoresearch) — constraint + mechanical metric + autonomous iteration = compounding gains.
 
 [![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-blue?logo=anthropic&logoColor=white)](https://docs.anthropic.com/en/docs/claude-code)
-[![Version](https://img.shields.io/badge/version-1.7.3-blue.svg)](https://github.com/uditgoenka/autoresearch/releases)
+[![Version](https://img.shields.io/badge/version-1.7.4-blue.svg)](https://github.com/uditgoenka/autoresearch/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Based on](https://img.shields.io/badge/Based_on-Karpathy's_Autoresearch-orange)](https://github.com/karpathy/autoresearch)
 [![Follow @iuditg](https://img.shields.io/badge/Follow-@iuditg-000000?style=flat&logo=x&logoColor=white)](https://x.com/intent/follow?screen_name=iuditg)
@@ -139,14 +139,16 @@ That pulls the latest version. Run `/reload-plugins` to activate. No need to uni
 git clone https://github.com/uditgoenka/autoresearch.git
 
 # Copy skill + subcommands to your project
-cp -r autoresearch/skills/autoresearch .claude/skills/autoresearch
-cp -r autoresearch/commands/autoresearch .claude/commands/autoresearch
+cp -r autoresearch/claude-plugin/skills/autoresearch .claude/skills/autoresearch
+cp -r autoresearch/claude-plugin/commands/autoresearch .claude/commands/autoresearch
+cp autoresearch/claude-plugin/commands/autoresearch.md .claude/commands/autoresearch.md
 ```
 
 Or install globally:
 ```bash
-cp -r autoresearch/skills/autoresearch ~/.claude/skills/autoresearch
-cp -r autoresearch/commands/autoresearch ~/.claude/commands/autoresearch
+cp -r autoresearch/claude-plugin/skills/autoresearch ~/.claude/skills/autoresearch
+cp -r autoresearch/claude-plugin/commands/autoresearch ~/.claude/commands/autoresearch
+cp autoresearch/claude-plugin/commands/autoresearch.md ~/.claude/commands/autoresearch.md
 ```
 
 > **Note:** The `commands/` directory is required for subcommands (`/autoresearch:ship`, `/autoresearch:plan`, `/autoresearch:security`) to work.
@@ -381,31 +383,34 @@ autoresearch/
 │   └── advanced-patterns.md                       ← Guards, MCP, CI/CD, FAQ
 ├── LICENSE
 ├── .claude-plugin/
-│   ├── marketplace.json                           ← Plugin marketplace manifest
-│   └── plugin.json                                ← Plugin metadata
-├── commands/
-│   └── autoresearch/
-│       ├── ship.md                                ← /autoresearch:ship registration
-│       ├── plan.md                                ← /autoresearch:plan registration
-│       ├── security.md                            ← /autoresearch:security registration
-│       ├── debug.md                               ← /autoresearch:debug registration
-│       ├── fix.md                                 ← /autoresearch:fix registration
-│       ├── scenario.md                            ← /autoresearch:scenario registration
-│       └── predict.md                             ← /autoresearch:predict registration
-└── skills/
-    └── autoresearch/
-        ├── SKILL.md                               ← Main skill (loaded by Claude Code)
-        └── references/
-            ├── autonomous-loop-protocol.md        ← 8-phase loop protocol
-            ├── core-principles.md                 ← 7 universal principles
-            ├── plan-workflow.md                   ← Plan wizard protocol
-            ├── security-workflow.md               ← Security audit protocol
-            ├── ship-workflow.md                   ← Ship workflow protocol
-            ├── debug-workflow.md                  ← Debug loop protocol
-            ├── fix-workflow.md                    ← Fix loop protocol
-            ├── scenario-workflow.md               ← Scenario exploration protocol
-            ├── predict-workflow.md                ← Multi-persona swarm prediction workflow
-            └── results-logging.md                 ← TSV tracking format
+│   └── marketplace.json                           ← Plugin marketplace manifest (source: ./claude-plugin)
+├── claude-plugin/                                 ← Distribution package (what users install)
+│   ├── .claude-plugin/
+│   │   └── plugin.json                            ← Plugin metadata + version
+│   ├── commands/
+│   │   ├── autoresearch.md                        ← Main /autoresearch command
+│   │   └── autoresearch/
+│   │       ├── ship.md                            ← /autoresearch:ship registration
+│   │       ├── plan.md                            ← /autoresearch:plan registration
+│   │       ├── security.md                        ← /autoresearch:security registration
+│   │       ├── debug.md                           ← /autoresearch:debug registration
+│   │       ├── fix.md                             ← /autoresearch:fix registration
+│   │       ├── scenario.md                        ← /autoresearch:scenario registration
+│   │       └── predict.md                         ← /autoresearch:predict registration
+│   └── skills/
+│       └── autoresearch/
+│           ├── SKILL.md                           ← Main skill (loaded by Claude Code)
+│           └── references/
+│               ├── autonomous-loop-protocol.md    ← 8-phase loop protocol
+│               ├── core-principles.md             ← 7 universal principles
+│               ├── plan-workflow.md               ← Plan wizard protocol
+│               ├── security-workflow.md           ← Security audit protocol
+│               ├── ship-workflow.md               ← Ship workflow protocol
+│               ├── debug-workflow.md              ← Debug loop protocol
+│               ├── fix-workflow.md                ← Fix loop protocol
+│               ├── scenario-workflow.md           ← Scenario exploration protocol
+│               ├── predict-workflow.md            ← Multi-persona swarm prediction workflow
+│               └── results-logging.md             ← TSV tracking format
 ```
 
 ---
@@ -416,7 +421,7 @@ autoresearch/
 A: Run `/autoresearch:plan` — it analyzes your codebase, suggests metrics, and dry-runs the verify command before you launch.
 
 **Q: Does this work with any project?**
-A: Yes. Any language, framework, or domain. Copy the skill to `.claude/skills/autoresearch/` and the commands to `.claude/commands/autoresearch/`.
+A: Yes. Any language, framework, or domain. Install via `/plugin marketplace add uditgoenka/autoresearch` or manually copy from the `claude-plugin/` directory.
 
 **Q: How do I stop the loop?**
 A: `Ctrl+C` or add `Iterations: N` to your inline config to run exactly N iterations. Claude commits before verifying, so your last successful state is always in git.
