@@ -4,7 +4,7 @@
 
 **By [Udit Goenka](https://udit.co)**
 
-[![Version](https://img.shields.io/badge/version-1.7.5-blue.svg)](https://github.com/uditgoenka/autoresearch/releases)
+[![Version](https://img.shields.io/badge/version-1.7.6-blue.svg)](https://github.com/uditgoenka/autoresearch/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 </div>
@@ -41,6 +41,7 @@ Everything you need to master autonomous iteration — from first run to advance
 | [Chains & Combinations](chains-and-combinations.md) | Multi-command pipelines and chain patterns |
 | [Examples by Domain](examples-by-domain.md) | Real-world examples: software, sales, marketing, DevOps, ML, HR |
 | [Advanced Patterns](advanced-patterns.md) | Guards, MCP servers, CI/CD, custom scripts, FAQ |
+| **[Scenario Guides](scenario/)** | **10 real-world scenario walkthroughs — chat, SaaS, CI/CD, healthcare, finance, IoT, and more** |
 
 ---
 
