@@ -117,6 +117,10 @@ Scan the artifact and its environment to understand readiness.
 | sales | Pricing current, branding consistent, contact info, CTA clear |
 | research | Citations complete, methodology documented, data sources linked |
 | design | Formats exported, responsive variants, accessibility checked |
+| product-spec | All sections complete, persona references valid (P1-P7), buyer segments mapped (B1-B5), cross-pillar dependencies documented, prototype links working |
+| catalog-doc | DOCX generated without errors, agent/skill descriptions match SKU master, pricing tiers populated, screenshots current |
+| prototype | HTML renders correctly, all interactive elements functional, persona journeys navigable, mode switching works |
+| strategy-doc | Strategic frames referenced, competitive positioning validated, financial projections sourced, risk assessment complete |
 
 **Output:** `✓ Phase 2: Inventory complete — [N] items assessed, [M] gaps found`
 
@@ -220,6 +224,43 @@ Generate a mechanical checklist based on shipment type. Every item must be verif
 - [ ] Source files organized and named
 - [ ] Brand guidelines followed
 - [ ] Handoff notes/specs documented
+
+### Product Management Checklists
+
+**product-spec (PRD/sub-block spec):**
+- [ ] All required sections present (overview, personas, user stories, UI/UX, data model, integrations, metrics)
+- [ ] Persona references use correct P-codes (P1-P7) with names
+- [ ] Buyer segments use correct B-codes (B0-B5) where applicable
+- [ ] Cross-pillar dependencies documented (CL, RL, WL, DB, Platform)
+- [ ] Entity references align with entity-master taxonomy
+- [ ] No placeholder text ("TBD", "TODO", "need input")
+- [ ] Prototype links present and accessible (if applicable)
+- [ ] Success metrics are measurable (not vague)
+- [ ] SESSION-LOG.md and PROJECT-TRACKER.md updated
+
+**catalog-doc (DOCX catalog):**
+- [ ] Agent/skill descriptions match current SKU master
+- [ ] Pricing tiers populated from pricing-template-v2.xlsx
+- [ ] Internal SKU prefixes correct (FB-DA, FB-SK, FB-FA, FB-INT, IS-*)
+- [ ] Connect/Understand/Act layer mapping accurate
+- [ ] Screenshots or mockups current (not stale)
+- [ ] DOCX renders without formatting errors
+- [ ] File saved to correct 05-outputs/ path
+
+**prototype (HTML interactive):**
+- [ ] HTML opens and renders in browser without errors
+- [ ] All navigation/tabs/mode switching functional
+- [ ] Data reflects realistic financial services scenarios
+- [ ] Persona-specific views accessible (P1 Dana, P2 Alex, etc.)
+- [ ] Responsive layout works on common screen sizes
+- [ ] No hardcoded test data visible to end user
+
+**strategy-doc (strategic deliverable):**
+- [ ] Money Value Chain references current and accurate
+- [ ] Competitive landscape references sourced from p2-competitive-landscape.xlsx
+- [ ] Financial projections have stated assumptions
+- [ ] Risk assessment covers regulatory, technical, and market risks
+- [ ] Recommendations are actionable (not vague aspirations)
 
 **Output:** `✓ Phase 3: Checklist generated — [N] items, [P] passing, [F] failing`
 

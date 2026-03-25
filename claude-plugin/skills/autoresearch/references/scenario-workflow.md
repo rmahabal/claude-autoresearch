@@ -318,6 +318,31 @@ When a domain is specified (or detected), load domain-specific dimension priorit
 **Default format:** user-stories
 **Extra checks:** A/B test interference, attribution edge cases, funnel drop-offs, localization
 
+### Financial Services Domain (`--domain finserv`)
+**Priority dimensions:** permission, state_transition, temporal, error_path, recovery, concurrent
+**Default format:** use-cases
+**Extra checks:**
+- Regulatory compliance (OCC, FDIC, state-level lending laws)
+- Multi-party handoffs (analyst → RM → credit officer → closer → borrower)
+- Document completeness and staleness (financials >90 days, missing guarantor docs)
+- Credit decisioning edge cases (exceptions, overrides, committee escalation)
+- Covenant monitoring triggers and cure periods
+- Dual-control / four-eyes approval workflows
+- Audit trail completeness and regulatory examination readiness
+- Integration failures (core banking, credit bureaus, document vendors)
+- Portfolio-level cascade effects (concentration limits, sector exposure)
+- Borrower self-service portal scenarios (uploads, status checks, draw requests)
+
+**Financial Services Exploration Dimensions (extends base 12):**
+
+| Dimension | Description | FinServ Focus |
+|-----------|-------------|---------------|
+| **Regulatory** | Compliance and examination scenarios | Policy violations, fair lending, BSA/AML triggers |
+| **Multi-party** | Handoff and approval chain scenarios | Analyst-to-officer, lender-to-borrower, syndication |
+| **Document lifecycle** | Document collection and validity | Expired financials, missing schedules, version conflicts |
+| **Credit decisioning** | Approval/decline/conditional paths | Override authority, committee escalation, exception pricing |
+| **Portfolio cascade** | Cross-deal and portfolio-level effects | Concentration limits hit, cross-default triggers, sector downgrades |
+
 ## Chaining Patterns
 
 ```bash

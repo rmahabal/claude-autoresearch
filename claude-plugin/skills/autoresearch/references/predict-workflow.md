@@ -241,6 +241,25 @@ Output format:
 </{persona_tag}_findings>
 ```
 
+### Product Management Persona Set (`--pm` flag)
+
+Replaces default persona set for product analysis, spec reviews, and strategy evaluation:
+
+| # | Persona | Role | Focus Areas | Bias Direction |
+|---|---------|------|-------------|----------------|
+| 1 | Dana (P1 Analyst) | Credit Analyst | Data completeness, workflow efficiency, spreading accuracy, document requirements | Assumes messy real-world data; skeptical of "happy path" assumptions |
+| 2 | Alex (P2 RM) | Relationship Manager | Client experience, deal velocity, handoff friction, cross-sell opportunities | Prefers minimal friction; questions anything that slows deal flow |
+| 3 | Sam (P4 Credit Officer) | Credit Decision Maker | Risk assessment gaps, approval workflow bottlenecks, policy compliance, override scenarios | Assumes regulatory scrutiny; questions every shortcut |
+| 4 | Enterprise Buyer (B1/B2) | FI Decision Maker | ROI justification, integration complexity, vendor lock-in, compliance burden, TCO | Skeptical of vendor claims; demands quantifiable value |
+| 5 | Devil's Advocate | Strategic Challenger | Market positioning gaps, competitive threats, build-vs-buy, pricing weaknesses, adoption barriers | MUST challenge >=50% of majority positions; MUST question assumptions about market readiness |
+
+**When to use `--pm`:**
+- Reviewing product specs or PRDs before finalization
+- Stress-testing pricing models or packaging decisions
+- Evaluating feature prioritization from multiple stakeholder perspectives
+- Pre-mortem analysis of go-to-market plans
+- Validating persona journey completeness
+
 ### Adversarial Persona Set (`--adversarial` flag)
 
 Replaces default persona set when red-team analysis is needed:

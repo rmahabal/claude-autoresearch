@@ -594,6 +594,22 @@ See `references/core-principles.md` for the 7 generalizable principles from auto
 | Prediction | Findings + hypotheses (higher) | Target files | `/autoresearch:predict` | — |
 | Documentation | Validation pass rate (higher) | `docs/*.md` | `/autoresearch:learn` | `npm test` |
 
+### Product Management / Financial Services Domain
+
+| Domain | Metric | Scope | Verify Command | Guard |
+|--------|--------|-------|----------------|-------|
+| Product spec quality | Section completeness % + persona coverage | `03-product/**/*.md` | Custom rubric check | Persona/buyer code validation |
+| Pricing stress test | Scenario coverage + competitive gap score | `02-strategy/**/*.md` | Pricing model evaluation script | Margin floor check |
+| Catalog accuracy | SKU match rate vs. master | `04-catalog/**/*` | SKU cross-reference validation | Pricing tier consistency |
+| Competitor analysis | Coverage of 42 tracked companies | `01-discovery/**/*.md` | Competitor matrix completeness | Market segment coverage |
+| Prototype quality | Interactive element pass rate | `03-product/**/prototype-*.html` | Browser render + click test | Navigation completeness |
+| Persona journey | Touchpoint coverage × handoff clarity | `03-product/**/persona-journeys.md` | Journey stage completeness check | Cross-persona handoff validation |
+
+**PM-specific flags:**
+- `--pm` on `/autoresearch:predict` → Uses FinBlocks PM persona set (Dana, Alex, Sam, Enterprise Buyer, Devil's Advocate)
+- `--domain finserv` on `/autoresearch:scenario` → Uses Financial Services exploration dimensions (regulatory, multi-party, document lifecycle, credit decisioning, portfolio cascade)
+- Ship types: `product-spec`, `catalog-doc`, `prototype`, `strategy-doc` → PM-specific checklists and verification
+
 Adapt the loop to your domain. The PRINCIPLES are universal; the METRICS are domain-specific.
 
 ## Post-Completion: Support Prompt (Once Per Project)
